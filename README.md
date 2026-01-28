@@ -2,7 +2,7 @@
 Final year Project
 
 ## Tools Used
-IDE -> VS Code
+IDE -> VS Code,
 DataBase -> MongoDB Workbench 
 
 ## 1. The Core Problem
