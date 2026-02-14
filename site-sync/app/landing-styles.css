@@ -1,0 +1,303 @@
+/* LANDING PAGE STYLES */
+
+/* Reset view-landing to allow scrolling */
+#view-landing {
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+    display: block;
+}
+
+/* Hero Section Wrapper */
+.landing-hero {
+    position: relative;
+    height: calc(100vh - 80px);
+    /* Full height minus header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero-content {
+    margin-left: 5%;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: clamp(48px, 10vw, 110px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+
+    /* Default: Dark Gradient matching About Us */
+    background: linear-gradient(135deg, #333, #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 20px;
+    /* Added a white drop shadow slightly to ensure visibility if bg is too dark, 
+       or remove filter if it clashes with the 'subtle' look. 
+       The user asked for 'same style', About Us has no shadow. */
+    transition: transform 0.5s ease;
+    cursor: default;
+    z-index: 1;
+}
+
+.hero-title:hover {
+    background: linear-gradient(135deg, var(--accent-orange), #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scale(1.02);
+}
+
+/* Remove separate span styling as the gradient covers it */
+.hero-title span {
+    color: inherit;
+}
+
+.hero-subtitle {
+    max-width: 500px;
+    color: var(--accent-orange-bright);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.hero-graphic {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-60%);
+    width: 65vw;
+    max-width: 900px;
+    height: auto;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    /* Ensure mask doesn't cause scroll/overflow issues */
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0.9;
+
+    /* Fade In Towards Right + Blur Border Effect */
+    /* Radial gradient centered slightly right creates a soft 'spotlight' that fades out to the left and edges */
+    -webkit-mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 70%);
+    mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 70%);
+
+    /* Mix-blend mode for better integration with dark background if needed */
+    mix-blend-mode: lighten;
+    filter: drop-shadow(0 0 20px rgba(211, 84, 0, 0.2));
+}
+
+/* Nav Bar in Hero */
+.bottom-nav-bar {
+    position: absolute;
+    bottom: 40px;
+    left: 5%;
+    right: 5%;
+    color: #ffff;
+    background: linear-gradient(0deg, rgba(252, 101, 0, 0.847) 30%, rgba(229, 92, 1, 0.605) 70%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-reflect: below 7px linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 10;
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.899);
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    flex-grow: 1;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.nav-item:hover::before {
+    opacity: 1;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, rgba(211, 84, 0, 0.4), rgba(230, 126, 34, 0.2));
+    border-color: var(--accent-orange-bright);
+    box-shadow: 0 0 15px rgba(211, 84, 0, 0.3);
+}
+
+/* --- ABOUT SECTION --- */
+.landing-about {
+    min-height: 80vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 5%;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.section-label {
+    text-transform: uppercase;
+    color: var(--accent-orange-bright);
+    letter-spacing: 2px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-left: 3px solid var(--accent-orange-bright);
+    padding-left: 15px;
+}
+
+.about-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccc;
+    font-weight: 300;
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-header {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: #aaa;
+    transition: color 0.3s;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    color: white;
+}
+
+.contact-item i {
+    width: 25px;
+    text-align: center;
+    color: var(--accent-orange-bright);
+}
+
+/* About Visual / Big Text */
+.about-visual {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.big-about-text {
+    font-size: 150px;
+    font-weight: 900;
+    line-height: 0.85;
+    text-align: right;
+    background: linear-gradient(135deg, #222, #444);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.about-container:hover .big-about-text {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, var(--accent-orange), #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .section-label {
+        border-right: 3px solid var(--accent-orange-bright);
+        padding-right: 15px;
+    }
+
+    .about-visual {
+        justify-content: center;
+        order: -1;
+        /* Show title first on mobile usually looks better, or last depending on taste */
+        order: 1;
+    }
+
+    .big-about-text {
+        font-size: 80px;
+        text-align: center;
+    }
+
+    /* .hero-title is handled by clamp() */
+}
