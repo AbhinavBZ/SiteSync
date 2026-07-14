@@ -1,0 +1,15 @@
+{
+  "name": "fieldtrack",
+  "version": "1.0.0",
+  "description": "GPS-based workforce tracking system",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "mobile": "cd mobile && npx expo start",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install && cd ../mobile && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
