@@ -10,8 +10,8 @@ export default function WorkersPage() {
 
   const fetchWorkers = async () => {
     try {
-      const { data } = await api.get('/users/workers');
-      setWorkers(data.workers);
+      const { data } = await api.get('/users?role=worker');
+      setWorkers(data.users);
     } catch (err) {
       console.error(err);
     } finally {

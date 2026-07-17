@@ -101,6 +101,17 @@ router.post('/location', restrictTo('worker'), async (req, res) => {
     });
     await session.save();
 
+    // Broadcast to all managers watching this site
+  const io = req.app.get('io');
+    io.to(`site-${session.site}`).emit('worker-location-update', {
+    sessionId: session._id,
+    workerId: session.worker,
+    siteId: session.site,
+    location: { lng: longitude, lat: latitude },
+    accuracy: accuracy,
+    timestamp: new Date(),
+  });
+
     res.json({ message: 'Location logged.' });
   } catch (err) {
     res.status(500).json({ message: 'Failed to log location.' });
@@ -124,11 +135,22 @@ router.post('/clock-out', restrictTo('worker'), async (req, res) => {
     await session.save();
 
     await session.populate('site', 'name address');
+    
+    // ─── NEW: Notify managers ────────────────────────────
+    const io = req.app.get('io');
+    io.to(`site-${session.site}`).emit('worker-clocked-out', {
+      sessionId: session._id,
+      workerId: session.worker._id,
+      siteId: session.site,
+    });
+    // ──────────────────────────────────────────────────────
+    
     res.json({ session });
   } catch (err) {
     res.status(500).json({ message: 'Failed to clock out.' });
   }
 });
+// ──────────────────────────────────────────────────────
 
 // ── GET /api/sessions/active ──────────────────────────────
 // The mobile app calls this on launch so if a worker was clocked

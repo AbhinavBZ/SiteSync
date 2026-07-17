@@ -6,7 +6,7 @@ import * as SecureStore from 'expo-secure-store';
 // Find your IP: run `ipconfig` (Windows) or `ifconfig` (Mac/Linux) in a terminal.
 // Example: http://192.168.1.42:5000
 // Do NOT use localhost — that points to the phone itself, not your PC.
-export const SERVER_URL = 'http://10.150.0.170:5000';
+export const SERVER_URL = 'http://10.189.50.5:5000';
 // ────────────────────────────────────────────────────────────────────────────
 
 const api = axios.create({ baseURL: `${SERVER_URL}/api` });

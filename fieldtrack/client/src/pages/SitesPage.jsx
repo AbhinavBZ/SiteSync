@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import api from '../utils/api';
 import SiteModal from '../components/sites/SiteModal';
-
+import AssignWorkerModal from '../components/sites/AssignWorkerModal';
 export default function SitesPage() {
   const [sites, setSites]         = useState([]);
   const [loading, setLoading]     = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editSite, setEditSite]   = useState(null);
   const [message, setMessage]     = useState('');
+  const [assignModal, setAssignModal] = useState(null);
 
   const fetchSites = async () => {
     try {
@@ -104,6 +105,7 @@ export default function SitesPage() {
                     </td>
                     <td>
                       <div style={{ display: 'flex', gap: 8 }}>
+                        <button className="btn btn-ghost btn-sm" onClick={() => setAssignModal(site)}>Assign</button>
                         <button className="btn btn-ghost btn-sm" onClick={() => openEdit(site)}>Edit</button>
                         <button className="btn btn-danger btn-sm" onClick={() => handleDelete(site._id)}>Delete</button>
                       </div>
@@ -121,6 +123,13 @@ export default function SitesPage() {
           site={editSite}
           onClose={() => setShowModal(false)}
           onSaved={handleSaved}
+        />
+      )}
+      {assignModal && (
+        <AssignWorkerModal
+          site={assignModal}
+          onClose={() => setAssignModal(null)}
+          onAssigned={() => fetchSites()}
         />
       )}
     </div>

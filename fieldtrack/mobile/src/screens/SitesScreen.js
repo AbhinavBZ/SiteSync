@@ -32,9 +32,10 @@ export default function SitesScreen({ navigation }) {
   }, []);
 
   useEffect(() => {
-    fetchData();
-    // Refresh when returning to this screen from ClockInScreen
-    const unsubscribe = navigation.addListener('focus', fetchData);
+  fetchData();
+  const unsubscribe = navigation.addListener('focus', () => {
+    setTimeout(() => fetchData(), 500);  // Add 500ms delay
+  });
     return unsubscribe;
   }, [fetchData, navigation]);
 

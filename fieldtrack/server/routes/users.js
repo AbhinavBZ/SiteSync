@@ -8,17 +8,19 @@ const router = express.Router();
 // All routes require login
 router.use(protect);
 
-// ── GET /api/users/workers ────────────────────────────────
-// Manager gets all workers assigned to them
-router.get('/workers', restrictTo('manager'), async (req, res) => {
+// ── GET /api/users ────────────────────────────────────────
+router.get('/', async (req, res) => {
   try {
-    const workers = await User.find({ manager: req.user._id, role: 'worker' }).select('-password');
-    res.json({ workers });
+    const { role } = req.query;  // Add this line
+    let query = {};
+    if (role) query.role = role;  // Add this line
+    
+    const users = await User.find(query).select('-password').sort('name');
+    res.json({ users });
   } catch (err) {
-    res.status(500).json({ message: 'Failed to fetch workers.' });
+    res.status(500).json({ message: 'Failed to fetch users.' });
   }
 });
-
 // ── POST /api/users/workers ───────────────────────────────
 // Manager creates a new worker account
 router.post(

@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard',  icon: '⊞', roles: ['manager', 'worker'] },
   { to: '/sites',     label: 'Sites',      icon: '📍', roles: ['manager'] },
   { to: '/workers',   label: 'Workers',    icon: '👷', roles: ['manager'] },
+  { to: '/live-tracking', label: 'Live Tracking', icon: '🗺', roles: ['manager'] },
 ];
 
 export default function AppLayout() {

@@ -1,7 +1,9 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const Site = require('../models/Site');
+const Session = require('../models/Session');
 const { protect, restrictTo } = require('../middleware/auth');
+
 
 const router = express.Router();
 const turf = require('@turf/turf');
@@ -186,6 +188,22 @@ router.delete('/:id', restrictTo('manager'), async (req, res) => {
     res.json({ message: 'Site deleted successfully.' });
   } catch (err) {
     res.status(500).json({ message: 'Failed to delete site.' });
+  }
+});
+
+// ── GET /api/sites/:id/sessions ──────────────────────────
+router.get('/:id/sessions', restrictTo('manager'), async (req, res) => {
+  try {
+    const site = await Site.findOne({ _id: req.params.id, manager: req.user._id });
+    if (!site) return res.status(404).json({ message: 'Site not found.' });
+
+    const sessions = await Session.find({ site: req.params.id })
+      .populate('worker', 'name email phone')
+      .sort('-clockIn');
+
+    res.json({ sessions });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch sessions.' });
   }
 });
 

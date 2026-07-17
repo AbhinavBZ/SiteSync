@@ -11,26 +11,26 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await api.get('/sites');
-        setSites(data.sites);
-        if (user.role === 'manager') {
-          const { data: wData } = await api.get('/users/workers');
-          setStats({
-            sites: data.sites.length,
-            activeSites: data.sites.filter((s) => s.isActive).length,
-            workers: wData.workers.length,
-          });
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
+  const fetchData = async () => {
+    try {
+      const { data } = await api.get('/sites');
+      setSites(data.sites || []);
+      if (user.role === 'manager') {
+        const { data: wData } = await api.get('/users?role=worker');
+        setStats({
+          sites: (data.sites || []).length,
+          activeSites: (data.sites || []).filter((s) => s.isActive).length,
+          workers: (wData.workers || []).length,
+        });
       }
-    };
-    fetchData();
-  }, [user.role]);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchData();
+}, [user.role]);
 
   if (loading) return <div className="page-loader"><div className="spinner" /> Loading dashboard...</div>;
 

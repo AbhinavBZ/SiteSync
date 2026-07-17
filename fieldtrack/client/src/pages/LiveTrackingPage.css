@@ -1,0 +1,144 @@
+.live-tracking-container {
+  display: flex;
+  height: calc(100vh - 64px);
+  gap: 0;
+  background: var(--color-bg);
+}
+
+.live-tracking-sidebar {
+  width: 280px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.live-tracking-sidebar h2 {
+  color: var(--color-text);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+.live-tracking-sidebar label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.live-tracking-sidebar label span {
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-tracking-sidebar select {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.workers-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.workers-list h3 {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.workers-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workers-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px;
+  background: var(--color-surface-2);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.workers-list .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.worker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.worker-info strong {
+  color: var(--color-text);
+  font-size: 13px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.worker-info small {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.worker-info .timestamp {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.workers-list .empty {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}
+
+.live-tracking-map {
+  flex: 1;
+  width: 100%;
+  background: var(--color-surface-2);
+}
+
+.live-tracking-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--color-text);
+  font-size: 16px;
+  background: var(--color-bg);
+}
