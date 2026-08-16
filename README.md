@@ -1,5 +1,13 @@
-# **SiteSync**
-Final year Project
+**SiteSync** is a geo-fenced workforce management platform designed to automate employee attendance tracking and location-based work verification for distributed teams.
+
+• Developed a full-stack mobile and web solution for managing remote workforce operations using modern application architecture.
+• Implemented GPS-based geofencing to verify employee presence within authorized work locations before allowing clock-in and clock-out actions.
+• Built a React Native mobile application with location services for real-time workforce tracking and session management.
+• Designed backend APIs using Node.js for authentication, site management, session handling, and geolocation validation.
+• Implemented periodic location updates and server-side verification to improve reliability and prevent false attendance records.
+• Designed database workflows for managing users, work sites, active sessions, and attendance history.
+• Focused on building a scalable solution for improving workforce transparency, operational efficiency, and field-team management.
+
 
 ## Tools Used
 IDE -> VS Code,
